@@ -14,9 +14,6 @@ public class Order implements Serializable {
 
     private String creator;
 
-    /**
-     * 任务描述
-     */
     private String description;
 
     /**

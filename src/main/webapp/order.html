@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-3.6.4.js"></script>
+</head>
+<body>
+<form id="orderForm">
+  <table width="50%">
+    <tr>
+      <th colspan="2">工单</th>
+<!--      对应pojo中的projectId-->
+      <input type="hidden" name="projectId" id="projectId">
+    </tr>
+    <tr>
+      <th align="right">创建人</th>
+      <td>
+<!--        对应数据库的列-->
+        <input name="creator" >
+      </td>
+    </tr>
+    <tr>
+      <td>描述</td>
+      <td>
+        <textarea cols="40" rows="10" name="description"></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td>优先级</td>
+      <td>
+<!--        对应pojo的orderPriority-->
+        <select name="orderPriority">
+          <option value="1">1级</option>
+          <option value="2">2级</option>
+          <option value="3">3级</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <button id="submitOrder">提交</button>
+      </td>
+    </tr>
+
+  </table>
+
+</form>
+</body>
+
+<script>
+
+  $(document).ready(function (){
+      console.log(location);
+    const pid = location.search.split("=")[1];
+    console.log(pid);
+    $("#projectId").val(pid)
+
+    $("#submitOrder").click(function (){
+      $.ajax({
+        url:"order/new",
+        type:"post",
+        data:$("#orderForm").serialize(),
+        success:function (msg){
+          console.log(msg.result);
+          alert(msg);
+        }
+      });
+    })
+  });
+
+
+
+
+</script>
+</html>
