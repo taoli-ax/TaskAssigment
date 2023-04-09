@@ -17,12 +17,10 @@
   <tbody>
   <tr>
     <td>
-        <form action="project/center" method="post">
-          <select class="projectSelect" >
-
+          <select class="projectSelect">
           </select>
-        <button id="projectSelect" >submit</button>
-      </form>
+        <button id="deployOrder" >submit</button>
+
     </td>
 
   </tr>
@@ -32,7 +30,6 @@
 </body>
 <script>
   $(document).ready(
-
             $.ajax({
               url:"project",
               type:"GET",
@@ -40,7 +37,7 @@
                 console.log(msg);
                 if(msg.result){
                   let opt=msg.projectList.map(item=>{
-                    return `<option>${item.projectName}</option>`
+                    return `<option value="${item.id}">${item.projectName}</option>`
                   }).join("");
                   console.log(opt);
                   $(".projectSelect").html(opt);
@@ -48,10 +45,12 @@
                   alert("后端返回数据失败")
                 }
                 }
-
                     })
-
-
   )
+
+    $("#deployOrder").click(function (){
+     location.href="order.html?id="+$(".projectSelect").val()
+    })
+
 </script>
 </html>
