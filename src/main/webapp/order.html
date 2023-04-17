@@ -11,7 +11,7 @@
     <tr>
       <th colspan="2">工单</th>
 <!--      对应pojo中的projectId-->
-      <input type="hidden" name="projectId" id="projectId">
+      <input type="hidden" name="project_id" id="projectId">
     </tr>
     <tr>
       <th align="right">创建人</th>
@@ -30,7 +30,7 @@
       <td>优先级</td>
       <td>
 <!--        对应pojo的orderPriority-->
-        <select name="orderPriority">
+        <select name="priority">
           <option value="1">1级</option>
           <option value="2">2级</option>
           <option value="3">3级</option>
@@ -52,7 +52,7 @@
 
   $(document).ready(function (){
       console.log(location);
-    const pid = location.search.split("=")[1];
+    const pid = location.search.split("=")[1].split("&")[0];
     console.log(pid);
     $("#projectId").val(pid)
 

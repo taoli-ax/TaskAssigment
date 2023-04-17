@@ -31,13 +31,13 @@
 <script>
   $(document).ready(
             $.ajax({
-              url:"project",
+              url:"findAll",
               type:"GET",
               success:function (msg){
                 console.log(msg);
                 if(msg.result){
                   let opt=msg.projectList.map(item=>{
-                    return `<option value="${item.id}">${item.projectName}</option>`
+                    return `<option value="${item.id}">${item.project_name}</option>`
                   }).join("");
                   console.log(opt);
                   $(".projectSelect").html(opt);
