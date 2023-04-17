@@ -1,7 +1,8 @@
 package com.coh.service.impl;
 
 import com.coh.dao.OrderDao;
-import com.coh.pojo.Order;
+import com.coh.pojo.Orders;
+import com.coh.pojo.Orders;
 import com.coh.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,8 +14,9 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderDao orderDao;
     @Override
-    public void create(Order order) {
-        orderDao.insertSelective(order);
+    public void create(Orders order) {
+        orderDao.create(order);
 
     }
+
 }

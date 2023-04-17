@@ -1,9 +1,7 @@
 package com.coh.controller;
-
-import com.coh.pojo.Order;
+import com.coh.pojo.Orders;
 import com.coh.service.OrderService;
-import org.apache.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,11 +17,10 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
     @RequestMapping("new")
-    public @ResponseBody Map<String,Object> newOrder(Order order){
+    public @ResponseBody Map<String,Object> newOrder(Orders order){
         System.out.println(order);
         Map<String,Object>map=new HashMap<>();
-        order.setCreateDate(new Date());
-
+        order.setCreate_at(new Date());
         try {
             orderService.create(order);
             map.put("result",true);

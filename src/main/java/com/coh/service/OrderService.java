@@ -1,7 +1,7 @@
 package com.coh.service;
 
-import com.coh.pojo.Order;
+import com.coh.pojo.Orders;
 
 public interface OrderService {
-    void create(Order order);
+    void create(Orders order);
 }
