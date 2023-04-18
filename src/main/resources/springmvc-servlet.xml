@@ -13,7 +13,7 @@
 
 ">
     <contenxt:component-scan base-package="com.coh.controller"/>
-    <mvc:annotation-driven />
+    <mvc:annotation-driven validator="validatorFactoryBean"/>
     <mvc:default-servlet-handler/>
 
     <mvc:resources mapping="/image/**" location="/image/"/>
@@ -22,10 +22,17 @@
     <mvc:resources mapping="/css/**" location="/css/"/>
 
 
-
-    <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="suffix" value=".jsp"/>
-        <property name="prefix" value="/"/>
+    <bean id="validatorFactoryBean" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
     </bean>
+
+
+
+<!--返回json格式不需要解析器-->
+
+<!--    <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+<!--        <property name="suffix" value=".jsp"/>-->
+<!--        <property name="prefix" value="/"/>-->
+<!--    </bean>-->
 
 </beans>
