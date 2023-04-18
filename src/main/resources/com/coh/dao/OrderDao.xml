@@ -7,4 +7,19 @@
     <insert id="create" parameterType="com.coh.pojo.Orders">
         insert into `orders` values (null,#{project_id},#{creator},#{description},#{priority},#{create_at})
     </insert>
+
+
+    <select id="findAll" resultMap="orderMap">
+#         select project_name from orders,project where orders.project_id=project.id
+
+        select * from orders
+    </select>
+    <resultMap id="orderMap" type="com.coh.pojo.OrdersVO">
+        <id column="id" property="id"/>
+        <result column="project_id" jdbcType="INTEGER" property="project_id"/>
+        <result column="creator" jdbcType="VARCHAR" property="creator"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="create_at" jdbcType="TIMESTAMP" property="create_at"/>
+        <association property="project" column="project_id" select="com.coh.dao.ProjectDao.findById"/>
+    </resultMap>
 </mapper>

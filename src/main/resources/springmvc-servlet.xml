@@ -13,7 +13,27 @@
 
 ">
     <contenxt:component-scan base-package="com.coh.controller"/>
-    <mvc:annotation-driven validator="validatorFactoryBean"/>
+    <mvc:annotation-driven validator="validatorFactoryBean">
+<!--        消息转换器 等价于注解 实体类的字段上@JsonFormat(pattern="yyyy-mm-dd") -->
+<!--        <mvc:message-converters register-defaults="true">-->
+<!--            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">-->
+<!--                <property name="supportedMediaTypes">-->
+<!--                    <list>-->
+<!--                        <value>application/json</value>-->
+<!--                    </list>-->
+<!--                </property>-->
+<!--                <property name="objectMapper">-->
+<!--                    <bean class="com.fasterxml.jackson.databind.ObjectMapper">-->
+<!--                        <property name="dateFormat">-->
+<!--                            <bean class="java.text.SimpleDateFormat">-->
+<!--                                <constructor-arg name="pattern" value="yyyy-mm-dd"/>-->
+<!--                            </bean>-->
+<!--                        </property>-->
+<!--                    </bean>-->
+<!--                </property>-->
+<!--            </bean>-->
+<!--        </mvc:message-converters>-->
+    </mvc:annotation-driven>
     <mvc:default-servlet-handler/>
 
     <mvc:resources mapping="/image/**" location="/image/"/>
