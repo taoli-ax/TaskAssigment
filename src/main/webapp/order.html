@@ -17,13 +17,13 @@
       <th align="right">创建人</th>
       <td>
 <!--        对应数据库的列-->
-        <input name="creator" >
+        <input name="creator" ><label id="creatorMessage"></label>
       </td>
     </tr>
     <tr>
       <td>描述</td>
       <td>
-        <textarea cols="40" rows="10" name="description"></textarea>
+        <textarea cols="40" rows="10" name="description"></textarea><label id="descriptionMessage"></label>
       </td>
     </tr>
     <tr>
@@ -49,25 +49,37 @@
 </body>
 
 <script>
-
-  $(document).ready(function (){
-      console.log(location);
     const pid = location.search.split("=")[1].split("&")[0];
-    console.log(pid);
     $("#projectId").val(pid)
+  // $(document).ready(function (){
+  //
+  //
+  //
+  // });
 
-    $("#submitOrder").click(function (){
+  $("#submitOrder").click(function (){
       $.ajax({
-        url:"order/new",
-        type:"post",
-        data:$("#orderForm").serialize(),
-        success:function (msg){
-          console.log(msg.result);
-          alert(msg);
-        }
+          url:"order/new",
+          type:"post",
+          data:$("#orderForm").serialize(),
+          success:function (msg){
+              if(msg.result){
+                  alert("success");
+                  // location.href=""
+              }else {
+                  alert("error")
+                  if(msg.creatorMessage){
+                      $("#creatorMessage").html(msg.creatorMessage);
+                  }
+                  if(msg.descriptionMessage){
+                      $("#descriptionMessage").html(msg.descriptionMessage);
+                  }
+              }
+
+
+          }
       });
-    })
-  });
+  })
 
 
 
