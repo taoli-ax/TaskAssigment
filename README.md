@@ -37,3 +37,4 @@ Base On SpringMVC
 - 没有完成`OrdersVO`对于`project_name`的展示，依然只展示`id`
 - mybatis关联查询这个知识点
 - jquery的ajax请求规范
+- `@RestController`处理响应和请求的规范
