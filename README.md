@@ -1,24 +1,24 @@
 # TaskAssigment
 Base On SpringMVC
 
-- 蜗牛的node.js课程是，前端查询+分页，后端异步处理数据，采用传统三层架构的小练习
-- 蜗牛的springmvc(SSM)是一个前端列表查询+分页功能，后端处理请求，查询数据的小练习
-
+- 蜗牛的node.js课程是，前端ajax查询+分页，后端异步处理数据，采用传统三层架构的小练习
+- 蜗牛的java(SSM)是，前端ajax查询+分页功能，后端ssm处理请求，查询数据的小练习
+- 相似度90%
 
 **Hint**
-- 如果要返回一个页面应该是用`@Controller`而不是`@ResController`
+- 如果要返回一个页面应该是用`@Controller`而不是`@RestController`
 
 ## Bug Fix
 **执行sql时遇到外键错误和语法错误**  
 - 请检查html表单提交时的name属性是否和pojo中的字段名一致！
-- 因为前端页面jquery发送ajax: `$("#form").serializer()`表单封装的`name`属性映射到后端pojo
+- 因为前端页面jquery发送ajax: `$("#form").serializer()`表单封装标签的`name`属性映射到后端pojo
 - controller中接收的参数是pojo类`public String index(Cup cup)`，这时两边名字如果不一样，直接可以看到某些字段值为0或null,据此反推也可看到哪里出错
 
 
-**数据库的列顺序跟sql语句的插入顺序保持一致**
+**Mybatis执行sql语句的插入与数据库的column顺序保持一致**
 
-- `insert into orders values(col_a,col_b,col_c)`
-- 数据库order表的列也是 `col_a`,`col_b`,`col_c`
+- `<select>insert into orders values(col_a,col_b,col_c)<select>`
+- 数据库orders表的列也是 `col_a`,`col_b`,`col_c`
 - 否则会发生错误！
 
 
@@ -38,3 +38,7 @@ Base On SpringMVC
 - mybatis关联查询这个知识点
 - jquery的ajax请求规范
 - `@RestController`处理响应和请求的规范
+
+
+### 对java套路的感觉
+- java的套路：实例化一个类，调用他的方法，完成你要的效果
