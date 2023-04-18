@@ -33,7 +33,7 @@ public class ProjectController {
 
             map.put("result",false);
         }
-        System.out.println("ProjectController.login");
+        System.out.println("ProjectController.select");
         return map;
     }
 }

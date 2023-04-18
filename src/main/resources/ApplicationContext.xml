@@ -26,7 +26,19 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="typeAliasesPackage" value="com.coh.pojo"/>
-
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <value>
+                            helperDialect=mysql
+                            reasonable=true
+                            autoRuntimeDialect=true
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
 
     </bean>
     <!--扫描所有的dao,dao依赖sqlSessionFactory才能执行，basePackage将会对接daoMapper.xml，最终生成实例-->
@@ -38,6 +50,7 @@
     <bean id="transactionManger" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
+
 
 
 

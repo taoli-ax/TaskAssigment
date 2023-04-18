@@ -7,5 +7,9 @@
         select * from project
     </select>
 
+    <select id="findById" parameterType="int" resultType="com.coh.pojo.Project">
+        select * from project where id=#{id}
+    </select>
+
 
 </mapper>

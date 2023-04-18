@@ -10,3 +10,10 @@ Base On SpringMVC
 - 请检查html表单提交时的name属性是否和pojo中的字段名一致！
 - 因为前端页面jquery发送ajax: `$("#form").serializer()`表单封装的`name`属性映射到后端pojo
 - controller中接收的参数是pojo类`public String index(Cup cup)`，这时两边名字如果不一样，直接可以看到某些字段值为0或null,据此反推也可看到哪里出错
+
+
+**数据库的列顺序跟sql语句的插入顺序保持一致**
+
+- `insert into orders values(col_a,col_b,col_c)`
+- 数据库order表的列也是 `col_a`,`col_b`,`col_c`
+- 否则会发生错误！

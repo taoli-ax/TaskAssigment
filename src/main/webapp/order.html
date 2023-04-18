@@ -46,16 +46,17 @@
   </table>
 
 </form>
+<button id="next">next step</button>
 </body>
 
 <script>
     const pid = location.search.split("=")[1].split("&")[0];
     $("#projectId").val(pid)
-  // $(document).ready(function (){
-  //
-  //
-  //
-  // });
+  $(document).ready(function (){
+
+
+
+
 
   $("#submitOrder").click(function (){
       $.ajax({
@@ -63,9 +64,10 @@
           type:"post",
           data:$("#orderForm").serialize(),
           success:function (msg){
+              alert(msg);
               if(msg.result){
                   alert("success");
-                  // location.href=""
+
               }else {
                   alert("error")
                   if(msg.creatorMessage){
@@ -79,8 +81,13 @@
 
           }
       });
-  })
 
+
+  })
+      $("#next").click(function (){
+          location.href="orderList.html";
+      })
+  });
 
 
 

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-3.6.4.js"></script>
+</head>
+<body>
+
+<table border="1">
+    <caption>Orders List</caption>
+    <thead>
+        <tr>
+            <th>serial</th>
+            <th>project</th>
+            <th>creator</th>
+            <th>description</th>
+            <th>priority</th>
+            <th>create_at</th>
+            <th>count</th>
+            <th>op</th>
+        </tr>
+    </thead>
+    <tbody id="tbody">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+    <tfoot id="tfoot">
+
+    </tfoot>
+
+</table>
+
+</body>
+<script>
+    $(document).ready(function (){
+        showAllOrders(1);
+
+    })
+
+    function showAllOrders(pageNum){
+        $.ajax({
+            url:"order/list",
+            data:{
+                "pageNum":pageNum,
+            },
+            type:"POST",
+            success(msg){
+                alert(msg)
+                if(msg.result){
+                    const tbody=msg.data.list.map(item=>{
+                        return `<tr>
+                                <td>${item.id}</td>
+                                <td>${item.project_id}</td>
+                                <td>${item.creator}</td>
+                                <td>${item.description}</td>
+                                <td>${item.priority}</td>
+                                <td>${item.create_at}</td>
+                                </tr>`
+                    }).join("")
+                    $("#tbody").html(tbody);
+                    const pageNation=`<tr>
+                        <th colSpan="8">
+                            <a id="Index" onclick="showAllOrders(1)">首页</a>
+                            <a id="next" onclick="showAllOrders(${msg.data.hasNextPage?msg.data.nextPage:msg.data.pages})">下一页</a>
+                            <a id="last" onclick="showAllOrders(${msg.data.hasPreviousPage?msg.data.prePage:1})">上一页</a>
+                            <a id="tail" onclick="showAllOrders(${msg.data.pages})">尾页</a>
+                            <a id="current">导航：${msg.data.navigatePages}</a>
+                        </th>
+                    </tr>`
+                    $("#tfoot").html(pageNation);
+                }
+            }
+        })
+    }
+
+
+
+
+</script>
+
+</html>
